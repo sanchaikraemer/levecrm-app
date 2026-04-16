@@ -4228,5 +4228,46 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<script>
+(function () {
+  function clearLeveCrmSearch() {
+    try {
+      var input = document.getElementById('searchQ');
+      if (!input) return;
+
+      input.value = '';
+      input.setAttribute('value', '');
+      input.defaultValue = '';
+
+      try { localStorage.removeItem('search'); } catch (e) {}
+      try {
+        Object.keys(localStorage).forEach(function (k) {
+          if ((k || '').toLowerCase().indexOf('search') !== -1) {
+            localStorage.removeItem(k);
+          }
+        });
+      } catch (e) {}
+
+      var clearBtn = document.getElementById('searchClear');
+      if (clearBtn) clearBtn.classList.remove('show');
+
+      if (typeof render === 'function') render();
+    } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', clearLeveCrmSearch);
+  window.addEventListener('load', clearLeveCrmSearch);
+  window.addEventListener('pageshow', clearLeveCrmSearch);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) clearLeveCrmSearch();
+  });
+
+  setTimeout(clearLeveCrmSearch, 50);
+  setTimeout(clearLeveCrmSearch, 300);
+  setTimeout(clearLeveCrmSearch, 1000);
+})();
+</script>
+
 </body>
 </html>
