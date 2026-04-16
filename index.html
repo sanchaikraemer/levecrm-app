@@ -703,7 +703,7 @@ body.t-light .h-row2 > select{background:#FFFFFF!important;border-color:#D0DAE8!
     <!-- Row 2: filtros -->
     <div class="h-row2" id="kanbanBar">
       <div class="search-wrap">
-        <input id="searchQ" placeholder="🔍 Busca..." autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off"/>
+        <input id="searchQ" placeholder="🔍 Busca..."/>
         <button class="search-clear" id="searchClear">×</button>
       </div>
       <select id="fEmp"></select>
@@ -4213,5 +4213,16 @@ setInterval(updateAgendaBadge,60000);
 agLoad().then(()=>{rescheduleAllNotifs();updateAgendaBadge();});
 loadAll().then(()=>{refreshFilterButtonLabels();syncMobileFiltersFromDesktop();const mob=document.getElementById('mobileActions');if(mob)mob.style.display=currentView==='kanban'&&window.innerWidth<=640?'grid':'none';});
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const search = document.getElementById('searchQ');
+  if (search) {
+    search.value = '';
+    localStorage.removeItem('search');
+  }
+});
+</script>
+
 </body>
 </html>
