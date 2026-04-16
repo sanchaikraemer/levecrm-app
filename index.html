@@ -4217,10 +4217,14 @@ loadAll().then(()=>{refreshFilterButtonLabels();syncMobileFiltersFromDesktop();c
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const search = document.getElementById('searchQ');
-  if (search) {
-    search.value = '';
-    localStorage.removeItem('search');
-  }
+  if (search) search.value = '';
+
+  // remove qualquer coisa relacionada a busca
+  Object.keys(localStorage).forEach(function(key){
+    if(key.toLowerCase().includes('search')){
+      localStorage.removeItem(key);
+    }
+  });
 });
 </script>
 
