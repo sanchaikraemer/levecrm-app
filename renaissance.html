@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renaissance Senger — Alto Padrão</title>
+  <meta name="description" content="Apartamentos de alto padrão — Construtora Senger">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold:        #c9a96e;
+    --gold-light:  #e8d5a3;
+    --gold-dim:    rgba(201,169,110,0.12);
+    --gold-border: rgba(201,169,110,0.22);
+    --black:       #080808;
+    --surface:     #111111;
+    --surface-2:   #181818;
+    --text:        #ede8dc;
+    --text-muted:  #8a8070;
+    --serif:       'Cormorant Garamond', Georgia, serif;
+    --sans:        'Raleway', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ──────────────────────────────────────── */
+
+  .hero {
+    position: relative;
+    height: 100svh;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 72px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 68%, var(--black) 100%),
+      url('img/renaissance/hero.jpg') center/cover no-repeat;
+    animation: heroZoom 14s ease-out forwards;
+  }
+
+  /* fallback gradient when hero image is missing */
+  .hero-bg-fallback {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #1a1510 0%, #0d0d0d 60%, #0a0a0a 100%);
+    z-index: -1;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.00); }
+  }
+
+  .hero-body {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: fadeUp 1.2s ease 0.4s both;
+    padding: 0 24px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(64px, 14vw, 128px);
+    font-weight: 300;
+    letter-spacing: clamp(6px, 2vw, 16px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .hero-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto;
+  }
+
+  .hero-sub {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: scrollPulse 2.5s ease infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+    50%       { opacity: 1;   transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── STATS BAR ─────────────────────────────────── */
+
+  .stats-bar {
+    background: var(--surface);
+    border-top:    1px solid var(--gold-border);
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    padding: 40px 20px;
+    text-align: center;
+    border-right: 1px solid var(--gold-border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-n {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-l {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  @media (max-width: 640px) {
+    .stats-inner { grid-template-columns: repeat(3, 1fr); }
+    .stat:nth-child(3) { border-right: none; }
+    .stat:nth-child(4) { border-right: 1px solid var(--gold-border); }
+    .stat:last-child   { border-right: none; }
+  }
+
+  /* ── SECTION HELPERS ───────────────────────────── */
+
+  .sec-eye {
+    display: block;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .sec-title {
+    font-family: var(--serif);
+    font-size: clamp(30px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+
+  .sec-title em { font-style: italic; color: var(--text-muted); }
+
+  /* ── ABOUT ─────────────────────────────────────── */
+
+  .about-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(70px, 10vw, 130px) clamp(24px, 5vw, 60px);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    line-height: 2.1;
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  .about-img {
+    height: 520px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #1e1a14, #0d0d0d);
+  }
+
+  .about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .about-img:hover img { transform: scale(1.04); }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-img  { height: 300px; }
+  }
+
+  /* ── GALLERY ───────────────────────────────────── */
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 400px 280px;
+    gap: 3px;
+  }
+
+  .g-item {
+    overflow: hidden;
+    position: relative;
+    background: var(--surface-2);
+  }
+
+  .g-item.g-tall { grid-row: 1 / 3; }
+
+  .g-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .g-item:hover img { transform: scale(1.06); }
+
+  .g-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.45), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .g-item:hover .g-overlay { opacity: 1; }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 260px 200px 200px;
+    }
+    .g-item.g-tall { grid-column: 1 / 3; grid-row: 1 / 2; }
+  }
+
+  /* ── AMENITIES ─────────────────────────────────── */
+
+  .am-section {
+    background: var(--surface);
+    padding: clamp(70px, 10vw, 130px) clamp(24px, 5vw, 60px);
+  }
+
+  .am-inner { max-width: 1200px; margin: 0 auto; }
+
+  .am-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--gold-border);
+    border: 1px solid var(--gold-border);
+    margin-top: 56px;
+  }
+
+  .am-item {
+    background: var(--surface);
+    padding: 38px 24px;
+    text-align: center;
+    transition: background 0.25s;
+  }
+
+  .am-item:hover { background: var(--surface-2); }
+
+  .am-icon {
+    display: block;
+    margin: 0 auto 18px;
+    color: var(--gold);
+  }
+
+  .am-name {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── FORM ──────────────────────────────────────── */
+
+  .form-section {
+    padding: clamp(70px, 10vw, 130px) clamp(24px, 5vw, 60px);
+  }
+
+  .form-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .form-sub {
+    color: var(--text-muted);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    line-height: 1.9;
+    margin-top: 12px;
+    margin-bottom: 56px;
+  }
+
+  .fg { margin-bottom: 36px; text-align: left; }
+
+  .fl {
+    display: block;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--gold-border);
+    color: var(--text);
+    padding: 12px 0;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .field::placeholder { color: var(--text-muted); font-size: 14px; }
+  .field:focus        { border-bottom-color: var(--gold); }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .chip input { display: none; }
+
+  .chip label {
+    display: block;
+    padding: 13px 22px;
+    border: 1px solid var(--gold-border);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .chip input:checked + label {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 18px 40px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+  }
+
+  .btn-submit:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* ── CTA BANNER ────────────────────────────────── */
+
+  .cta-banner {
+    position: relative;
+    text-align: center;
+    padding: clamp(90px, 14vw, 160px) clamp(24px, 5vw, 60px);
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(0,0,0,0.74), rgba(0,0,0,0.74)),
+      url('img/renaissance/vista-aerea.jpg') center/cover no-repeat;
+  }
+
+  .cta-content { position: relative; z-index: 1; }
+
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 50px;
+    background: var(--gold);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 40px;
+    transition: all 0.3s;
+  }
+
+  .btn-wa:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,169,110,0.22);
+  }
+
+  /* ── FOOTER ────────────────────────────────────── */
+
+  footer {
+    background: #050505;
+    padding: 52px 24px;
+    text-align: center;
+    border-top: 1px solid var(--gold-border);
+  }
+
+  .footer-logo {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(22px, 4vw, 34px);
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .footer-brand {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  /* ── SCROLL REVEAL ─────────────────────────────── */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-bg-fallback"></div>
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-body">
+    <span class="eyebrow">Construtora Senger apresenta</span>
+    <h1 class="hero-title">Renaissance</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Alto Padrão &nbsp;·&nbsp; Localização Privilegiada</p>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Descobrir</span>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M7 2v14M1 11l6 8 6-8"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     STATS BAR
+     → Atualize os números conforme o projeto
+════════════════════════════════════════ -->
+<div class="stats-bar reveal">
+  <div class="stats-inner">
+    <div class="stat">
+      <span class="stat-n">20</span>
+      <span class="stat-l">Andares</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">60</span>
+      <span class="stat-l">Unidades</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">170m²</span>
+      <span class="stat-l">Área privativa</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">3</span>
+      <span class="stat-l">Suítes</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">3</span>
+      <span class="stat-l">Vagas</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<div class="about-wrap">
+  <div class="reveal">
+    <span class="sec-eye">O Empreendimento</span>
+    <h2 class="sec-title">Onde cada detalhe<br><em>conta uma história</em></h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>O Renaissance Senger nasce com a missão de redefinir o que é viver com excelência. Em cada linha de sua arquitetura, em cada material escolhido, há um compromisso inabalável com o requinte e o conforto.</p>
+      <p>Localizado em posição privilegiada, o empreendimento oferece tudo que uma família de alto padrão merece: espaços generosos, vistas deslumbrantes e uma infraestrutura que supera as expectativas.</p>
+      <p>Mais do que um imóvel, é o endereço que define quem você é.</p>
+    </div>
+    <div class="about-img">
+      <img src="img/renaissance/fachada-palmeiras.jpg" alt="Renaissance Senger" onerror="this.style.display='none'">
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     GALLERY
+     Nomes dos arquivos a carregar em img/renaissance/:
+     hero.jpg           → fachada noturna principal (hero)
+     fachada-noturna.jpg → fachada noturna (galeria)
+     vista-aerea.jpg    → vista aérea ao pôr do sol
+     fachada-palmeiras.jpg → fachada diurna c/ palmeiras
+     lobby.jpg          → entrada / lobby com Tesla
+     area-comum.jpg     → (próximas imagens que enviar)
+════════════════════════════════════════ -->
+<div class="gallery-grid reveal">
+  <div class="g-item g-tall">
+    <img src="img/renaissance/fachada-noturna.jpg" alt="Fachada noturna" onerror="this.style.display='none'">
+    <div class="g-overlay"></div>
+  </div>
+  <div class="g-item">
+    <img src="img/renaissance/vista-aerea.jpg" alt="Vista aérea" onerror="this.style.display='none'">
+    <div class="g-overlay"></div>
+  </div>
+  <div class="g-item">
+    <img src="img/renaissance/fachada-palmeiras.jpg" alt="Jardins" onerror="this.style.display='none'">
+    <div class="g-overlay"></div>
+  </div>
+  <div class="g-item">
+    <img src="img/renaissance/lobby.jpg" alt="Lobby" onerror="this.style.display='none'">
+    <div class="g-overlay"></div>
+  </div>
+  <div class="g-item">
+    <img src="img/renaissance/area-comum-01.jpg" alt="Área comum" onerror="this.style.display='none'">
+    <div class="g-overlay"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     AMENITIES
+     → Adicione ou remova itens conforme o projeto
+════════════════════════════════════════ -->
+<div class="am-section">
+  <div class="am-inner reveal">
+    <span class="sec-eye">Infraestrutura</span>
+    <h2 class="sec-title">Um universo de<br><em>exclusividade</em></h2>
+    <div class="am-grid">
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M4 24c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 5-2.5 7.5 0"/>
+          <path d="M9 19V9a2.5 2.5 0 0 1 5 0v2.5h7V9a2.5 2.5 0 0 1 5 0v10"/>
+        </svg>
+        <span class="am-name">Piscina</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="2" y="14" width="4" height="6" rx="1"/>
+          <rect x="28" y="14" width="4" height="6" rx="1"/>
+          <rect x="7" y="11" width="5" height="12" rx="1"/>
+          <rect x="22" y="11" width="5" height="12" rx="1"/>
+          <line x1="12" y1="17" x2="22" y2="17"/>
+        </svg>
+        <span class="am-name">Fitness</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M17 5c0 7-9 11-9 18h18c0-7-9-11-9-18z"/>
+          <line x1="9" y1="27" x2="25" y2="27"/>
+          <line x1="11" y1="30" x2="23" y2="30"/>
+        </svg>
+        <span class="am-name">Spa & Sauna</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="3" y="9" width="28" height="19" rx="2"/>
+          <path d="M8 28v3M26 28v3"/>
+          <path d="M7 15l2.5-5h15l2.5 5"/>
+          <circle cx="11" cy="21" r="2.5"/>
+          <circle cx="23" cy="21" r="2.5"/>
+        </svg>
+        <span class="am-name">3 Vagas</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M17 30V15"/>
+          <path d="M17 19c-5-5-5-11 0-11 5 0 5 6 0 11"/>
+          <path d="M17 23c-7 0-9-4-7-9 2.5 2.5 5 7 7 9z"/>
+          <path d="M17 23c7 0 9-4 7-9-2.5 2.5-5 7-7 9z"/>
+          <line x1="9" y1="30" x2="25" y2="30"/>
+        </svg>
+        <span class="am-name">Jardim Privativo</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="17" cy="10" r="4.5"/>
+          <path d="M9 30v-3.5a8 8 0 0 1 16 0V30"/>
+          <line x1="4" y1="30" x2="30" y2="30"/>
+        </svg>
+        <span class="am-name">Concierge</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M17 3l13 5.5v8.5c0 7.5-5.5 13-13 15-7.5-2-13-7.5-13-15V8.5L17 3z"/>
+        </svg>
+        <span class="am-name">Segurança 24h</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="4" y="12" width="26" height="18" rx="1.5"/>
+          <path d="M4 18h26"/>
+          <path d="M11 12V8a6 6 0 0 1 12 0v4"/>
+        </svg>
+        <span class="am-name">Salão de Festas</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="4" y="4" width="26" height="26" rx="2"/>
+          <path d="M4 13h26M13 13v17"/>
+        </svg>
+        <span class="am-name">Coworking</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="17" cy="17" r="13"/>
+          <path d="M17 9v8l5 3"/>
+        </svg>
+        <span class="am-name">Delivery Privativo</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M4 17h4l3-9 6 18 4-12 2 3h7"/>
+        </svg>
+        <span class="am-name">Pet Place</span>
+      </div>
+
+      <div class="am-item">
+        <svg class="am-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M17 4l2.5 8H28l-7 5 2.5 8L17 20l-6.5 5 2.5-8-7-5h8.5L17 4z"/>
+        </svg>
+        <span class="am-name">Alto Padrão</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     LEAD FORM
+════════════════════════════════════════ -->
+<div class="form-section">
+  <div class="form-inner reveal">
+    <span class="sec-eye">Quero saber mais</span>
+    <h2 class="sec-title">Receba uma apresentação<br><em>exclusiva</em></h2>
+    <p class="form-sub">Preencha abaixo e entraremos em contato em instantes.<br>Sem compromisso.</p>
+
+    <form id="leadForm" novalidate>
+
+      <div class="fg">
+        <label class="fl" for="f-name">Seu nome completo</label>
+        <input id="f-name" type="text" class="field" placeholder="Como prefere ser chamado(a)?" autocomplete="name" required>
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="f-phone">WhatsApp</label>
+        <input id="f-phone" type="tel" class="field" placeholder="(XX) XXXXX-XXXX" autocomplete="tel" required>
+      </div>
+
+      <div class="fg">
+        <span class="fl">Qual seu objetivo?</span>
+        <div class="chips">
+          <div class="chip"><input type="radio" id="obj-1" name="objetivo" value="Morar"><label for="obj-1">Morar</label></div>
+          <div class="chip"><input type="radio" id="obj-2" name="objetivo" value="Investir"><label for="obj-2">Investir</label></div>
+          <div class="chip"><input type="radio" id="obj-3" name="objetivo" value="Ambos"><label for="obj-3">Ambos</label></div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <span class="fl">Tipologia de interesse</span>
+        <div class="chips">
+          <div class="chip"><input type="radio" id="tip-2" name="tipologia" value="2 suítes"><label for="tip-2">2 Suítes</label></div>
+          <div class="chip"><input type="radio" id="tip-3" name="tipologia" value="3 suítes"><label for="tip-3">3 Suítes</label></div>
+          <div class="chip"><input type="radio" id="tip-4" name="tipologia" value="4 suítes (cobertura)"><label for="tip-4">Cobertura</label></div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <span class="fl">Quando pretende comprar?</span>
+        <div class="chips">
+          <div class="chip"><input type="radio" id="pz-1" name="prazo" value="Imediatamente"><label for="pz-1">Imediatamente</label></div>
+          <div class="chip"><input type="radio" id="pz-2" name="prazo" value="3 a 6 meses"><label for="pz-2">3 a 6 meses</label></div>
+          <div class="chip"><input type="radio" id="pz-3" name="prazo" value="Mais de 6 meses"><label for="pz-3">+ 6 meses</label></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Solicitar apresentação exclusiva &rarr;</button>
+
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════ -->
+<div class="cta-banner">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="cta-content reveal">
+    <span class="sec-eye" style="display:block;margin-bottom:16px;">Fale diretamente</span>
+    <h2 class="sec-title" style="max-width:480px;margin:0 auto;">Pronto para dar<br><em>o próximo passo?</em></h2>
+    <a id="ctaWa" href="#" class="btn-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Falar com um especialista
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <span class="footer-logo">Renaissance</span>
+  <span class="footer-brand">Construtora Senger</span>
+</footer>
+
+<script>
+  // ── CONFIGURAÇÃO ──────────────────────────────────────────────────────
+  // Altere para o número do WhatsApp da equipe de vendas (DDI + DDD + número)
+  const WA = '5554XXXXXXXXX';
+
+  function waUrl(txt) {
+    return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(txt);
+  }
+
+  // Botão CTA fixo
+  document.getElementById('ctaWa').href = waUrl(
+    'Olá! Vi a apresentação do Renaissance Senger e gostaria de mais informações.'
+  );
+
+  // Formulário → abre WhatsApp com dados preenchidos
+  document.getElementById('leadForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name  = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+
+    if (!name || !phone) {
+      (name ? document.getElementById('f-phone') : document.getElementById('f-name')).focus();
+      return;
+    }
+
+    const obj = document.querySelector('[name="objetivo"]:checked')?.value  || 'Não informado';
+    const tip = document.querySelector('[name="tipologia"]:checked')?.value || 'Não informado';
+    const prz = document.querySelector('[name="prazo"]:checked')?.value     || 'Não informado';
+
+    const msg =
+      `Olá! Me chamo *${name}* e meu WhatsApp é ${phone}.\n\n` +
+      `Tenho interesse no *Renaissance Senger*.\n\n` +
+      `📌 Objetivo: ${obj}\n` +
+      `🏠 Tipologia: ${tip}\n` +
+      `📅 Prazo: ${prz}\n\n` +
+      `Aguardo o contato. Obrigado!`;
+
+    window.open(waUrl(msg), '_blank');
+  });
+
+  // ── SCROLL REVEAL ─────────────────────────────────────────────────────
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.07 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
